@@ -14,9 +14,17 @@ const APP_ENV = process.env.APP_ENV;
 // connect to db
 databaseConnection();
 
+// middleware
+const middleware = (req, res, next) => {
+    console.log('Hello from Middleware');
+    req.username = 'Tapiwa';
+    next();
+};
+
 // import routes
 const jobs = require('./routes/jobs');
 
+app.use(middleware);
 // use routes
 app.use('/api/v1', jobs);
 
