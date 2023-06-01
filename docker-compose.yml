@@ -1,0 +1,28 @@
+version: "3"
+
+services:
+  node-api:
+    build:
+      context: .
+      dockerfile: docker/node/Dockerfile
+    ports:
+      - "3000:3000"
+    volumes:
+      - .:/app
+      - /app/node_modules
+    links:
+      - mongo
+    command: npm run dev
+  mongo:
+    image: mongo
+    restart: always
+    ports:
+      - '27017:27017'
+
+  mongo-express:
+    image: mongo-express
+    restart: always
+    ports:
+      - 8081:8081
+    environment:
+      ME_CONFIG_MONGODB_URL: mongodb://mongo:27017/
