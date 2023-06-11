@@ -15,6 +15,7 @@ const APP_ENV = process.env.APP_ENV;
 databaseConnection();
 
 // middleware
+app.use(express.json());
 const middleware = (req, res, next) => {
     console.log('Hello from Middleware');
     req.username = 'Tapiwa';
