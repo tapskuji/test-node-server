@@ -15,17 +15,18 @@ const APP_ENV = process.env.APP_ENV;
 databaseConnection();
 
 // middleware
-app.use(express.json());
 const middleware = (req, res, next) => {
     console.log('Hello from Middleware');
     req.username = 'Tapiwa';
     next();
 };
 
+app.use(express.json());
+app.use(middleware);
+
 // import routes
 const jobs = require('./routes/jobs');
 
-app.use(middleware);
 // use routes
 app.use('/api/v1', jobs);
 

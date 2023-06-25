@@ -10,7 +10,7 @@ exports.getJobs = (req, res, next) => {
 };
 
 // create new job => /api/v1/jobs
-exports.newJob = async (req, res, next) => {
+exports.createJob = async (req, res, next) => {
     console.log(req.body);
     const job = await Job.create(req.body);
 
